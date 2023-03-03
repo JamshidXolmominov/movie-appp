@@ -13,8 +13,6 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 		const randomMovie = trending[Math.floor(Math.random() * trending.length)];
 		setMovie(randomMovie);
 	}, [trending]);
-
-	console.log(movie);
 	
 	return (
 		<div className='flex flex-col space-y-2 py-20 md:space-y-4 lg:h-[65vh] lg:pb-12 lg:center'>
@@ -27,7 +25,7 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 				/>
 			</div>
 
-			<div className='py-[4px] px-[8px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#1d1d1d]/50 w-[111px]'>
+			<div className='py-[4px] px-[8px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#e5e5e5]/50 w-[111px]'>
 				{movie.media_type}
 			</div>
 
