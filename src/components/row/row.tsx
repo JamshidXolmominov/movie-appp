@@ -3,26 +3,21 @@ import { AiFillCaretRight, AiFillCaretLeft } from 'react-icons/ai';
 import Thumbnail from '../thumbnail/thumbnail';
 import { useEffect, useRef, useState } from 'react';
 
-const Row = ({ title, movies }: RowProps) => {
+const Row = ({ title, movies, isBig = false }: RowProps) => {
 	const [moved, setMoved] = useState<boolean>(false);
 	const carouselRef = useRef<HTMLDivElement>(null);
 
 	const handleClick = (direction: 'left' | 'right') => {
 		setMoved(true);
-
 		if (carouselRef.current) {
 			const { scrollLeft, clientWidth } = carouselRef.current;
-
 			const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-
 			carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-
 			if (direction === 'left' && scrollTo === 0) {
 				setMoved(false);
 			}
 		}
 	};
-
 	return (
 		<div className='h-[600px] space-y-1 md:space-y-2'>
 			<h2 className='w-56 cursor-pointer text-sm md:text-2xl font-semibold text-[#e5e5e5] hover:text-white transition duration-200'>
@@ -39,10 +34,10 @@ const Row = ({ title, movies }: RowProps) => {
 
 				<div
 					ref={carouselRef}
-					className='flex scrollbar-hide items-center space-x-1 overflow-hidden overflow-x-scroll md:space-x-4'
+					className={`flex scrollbar-hide items-center ${!isBig && 'space-x-1 md:space-x-4'} overflow-hidden overflow-x-scroll`}
 				>
 					{movies.map(movie => (
-						<Thumbnail key={movie.id} movie={movie} />
+						<Thumbnail key={movie.id} movie={movie} isBig={isBig} />
 					))}
 				</div>
 
@@ -54,5 +49,4 @@ const Row = ({ title, movies }: RowProps) => {
 		</div>
 	);
 };
-
 export default Row;
