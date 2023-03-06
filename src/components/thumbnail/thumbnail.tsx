@@ -1,11 +1,20 @@
 import Image from 'next/image';
 import ReactStars from 'react-stars';
 import { image_base } from 'src/helpers/constants';
+import { useInfoStore } from 'src/store';
 import { ThumbnailProps } from './thumbnail.props';
 
 const Thumbnail = ({ movie, isBig = false }: ThumbnailProps) => {
+	const { setModal, setCurrentMovie } = useInfoStore();
+
+	const handleCurrentMovie = () => {
+		setModal(true);
+		setCurrentMovie(movie);
+	};
+
 	return (
 		<div
+			onClick={handleCurrentMovie}
 			className={`relative ${
 				isBig ? 'h-[400px] md:h-[500px] min-w-[350px] md:min-w-[470px]' : 'h-[330px] md:h-[440px] min-w-[200px] md:min-w-[292px]'
 			}  cursor-pointer transition duration-200 ease-out md:hover:scale-110`}
@@ -16,9 +25,7 @@ const Thumbnail = ({ movie, isBig = false }: ThumbnailProps) => {
 				fill
 				className='rounded-sm md:rounded object-cover'
 			/>
-
 			<div className='absolute left-0 right-0 bottom-0 top-0 bg-black/40 w-full h-full' />
-
 			<div className='absolute bottom-5 left-4 right-2'>
 				<div className='flex items-center space-x-2'>
 					<ReactStars edit={false} count={10} value={movie.vote_average} color2={'#fff'} />
