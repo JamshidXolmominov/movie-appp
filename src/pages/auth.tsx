@@ -13,28 +13,24 @@ const Auth = () => {
 	const router = useRouter();
 
 	if (user) router.push('/');
+
 	const toggleAuth = (state: 'signup' | 'signin') => {
 		setAuth(state);
 	};
 
 	const onSubmit = async (formData: { email: string; password: string }) => {
 		if (auth === 'signup') {
-			setIsLoading(true);
-			const response = await fetch('/api/customer', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email: formData.email }),
-			});
-			await response.json();
 			signUp(formData.email, formData.password);
 		} else {
 			signIn(formData.email, formData.password);
 		}
 	};
+
 	const validation = Yup.object({
 		email: Yup.string().email('Enter valid email').required('Email is required'),
 		password: Yup.string().min(6, '6 minimum character').required('Password is requried'),
 	});
+
 	return (
 		<div className='relative flex h-screen w-screen flex-col md:items-center md:justify-center bg-black md:bg-transparent'>
 			<Head>
@@ -43,7 +39,9 @@ const Auth = () => {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+
 			<Image src={'https://rb.gy/p2hphi'} alt={'bg'} fill className='object-cover -z-10 !hidden sm:!inline opacity-60' />
+
 			<Image
 				src={'/logo.svg'}
 				alt={'logo'}
@@ -51,6 +49,7 @@ const Auth = () => {
 				height={70}
 				className={'absolute left-4 top-4 cursor-pointer object-contain'}
 			/>
+
 			<Formik initialValues={{ email: '', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
 				<Form className='relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-10'>
 					<h1 className='text-4xl font-semibold'>{auth === 'signup' ? 'Sign up' : 'Sign In'}</h1>
@@ -60,7 +59,6 @@ const Auth = () => {
 						<TextField name='password' placeholder='Password' type={'password'} />
 					</div>
 
-					
 					<button type='submit' disabled={isLoading} className='w-full bg-[#E10856] py-4 rounded mt-4 font-semibold'>
 						{isLoading ? 'Loading...' : auth === 'signin' ? 'Sign In' : 'Sign Up'}
 					</button>
@@ -85,4 +83,5 @@ const Auth = () => {
 		</div>
 	);
 };
+
 export default Auth;
