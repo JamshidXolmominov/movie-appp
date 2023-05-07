@@ -1,14 +1,14 @@
-import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyBu49sEJuzDIK2eL7D_YltKFuX1je_Jw4c',
-	authDomain: 'sammi-movie-app.firebaseapp.com',
-	projectId: 'sammi-movie-app',
-	storageBucket: 'sammi-movie-app.appspot.com',
-	messagingSenderId: '92350315428',
-	appId: '1:92350315428:web:c9d8ca995f907d34f0df31',
+	apiKey: 'AIzaSyA9IU3Iin9yh3fJNYMFLztzVi0uigeJ26I',
+	authDomain: 'movie-app-a69cb.firebaseapp.com',
+	projectId: 'movie-app-a69cb',
+	storageBucket: 'movie-app-a69cb.appspot.com',
+	messagingSenderId: '643463553784',
+	appId: '1:643463553784:web:45f3db4939e7691252510d',
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
