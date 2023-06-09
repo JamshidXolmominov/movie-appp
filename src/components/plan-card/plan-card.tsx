@@ -32,7 +32,10 @@ const PlanCard = ({ product }: PlanCardProps) => {
 				{/* eslint-disable-next-line */}
 				<img src={product.images[0]} alt='Colors' className='rounded-xl w-full' />
 				<p className='absolute top-0 bg-black/90 text-white font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg'>
-					{(product.default_price.unit_amount / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+					{(product.default_price.unit_amount / 100).toLocaleString('en-US', {
+						style: 'currency',
+						currency: 'USD',
+					})}
 				</p>
 				<div className='absolute rounded-xl left-0 right-0 bottom-0 top-0 bg-black/20 w-full h-full' />
 			</div>
@@ -45,7 +48,7 @@ const PlanCard = ({ product }: PlanCardProps) => {
 				{isLoading ? 'Loading...' : 'BUY PLAN'}
 			</button>
 			<div className='my-4 flex flex-col space-y-2'>
-				{product.metadata.adv.split(', ').map((c, id) => (
+				{product.metadata.adv?.split(', ').map((c, id) => (
 					<div key={id} className='flex space-x-2 items-center'>
 						{id == 0 && <RiVipCrown2Line className='w-5 h-5' />}
 						{id == 1 && <AiOutlineHourglass className='w-5 h-5' />}
@@ -57,4 +60,5 @@ const PlanCard = ({ product }: PlanCardProps) => {
 		</div>
 	);
 };
+
 export default PlanCard;
