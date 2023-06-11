@@ -3,13 +3,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyCQw6yUUfQhSbhCngW2WpyjU2tnacXFon8',
-	authDomain: 'movie-2c4e5.firebaseapp.com',
-	projectId: 'movie-2c4e5',
-	storageBucket: 'movie-2c4e5.appspot.com',
-	messagingSenderId: '1063049801387',
-	appId: '1:1063049801387:web:cbe69705458731c49751ee',
-	measurementId: 'G-63G2LR5EB7',
+  apiKey: "AIzaSyBpTyKrH83dVsSJkXBMEFsac_J7kmPuWN4",
+  authDomain: "movie-d03da.firebaseapp.com",
+  projectId: "movie-d03da",
+  storageBucket: "movie-d03da.appspot.com",
+  messagingSenderId: "249948553687",
+  appId: "1:249948553687:web:199fcba74b211f33698b92",
+  measurementId: "G-47PCQETQW8"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
